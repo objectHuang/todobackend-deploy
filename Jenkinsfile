@@ -1,10 +1,10 @@
 node {
     checkout scm
 
-    stage('todobackend deploy') {
-        writeFile file: 'extra.json', text: "{'image_tag':'${IMAGE_TAG}', 'ecs_tasks':[${TASKS}]}"
-        withEnv(["VALUT_PASSWORD=${VALUT_PASSWORD}"]) {
-            sh 'ansible-playbook site.yml --valut-password-file valut.py -e "@extras.json"'
+    stage ('Deploy application release') {
+        writeFile file: 'extras.json', text: "{'image_tag':'${IMAGE_TAG}','ecs_tasks':[${TASKS}]}"
+        withEnv(["VAULT_PASSWORD=${VAULT_PASSWORD}"]) {
+            sh 'ansible-playbook site.yml --vault-password-file vault.py -e "@extras.json"'
         }
     }
 }
