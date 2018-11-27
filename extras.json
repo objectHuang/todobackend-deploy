@@ -1,0 +1,4 @@
+{
+    "image_tag":"objecthuang/todobackend:latest"
+    ,"ecs_tasks":["migrate","collectstatic"]
+}
